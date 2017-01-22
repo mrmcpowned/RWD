@@ -35,11 +35,11 @@ $(function () {
 
     //
     var firstText = $('#url-form [name]').serializeObject();
-    $('#generate .url').text(window.location.href + "?" $.param(firstText));
+    $('#generate .url').text(window.location.href + "?" + $.param(firstText));
     $genURL.attr("data-clipboard-text", window.location.href + "?" + $.param(firstText));
     $genURL.attr("data-message", "Click to copy, hold shift for HTTP link!");
     $('#url-form').on("keyup change", function () {
-        $('#generate .url').text(window.location.href + "?" $.param($('#url-form [name]').serializeObject()));
+        $('#generate .url').text(window.location.href + "?" + $.param($('#url-form [name]').serializeObject()));
         $genURL.attr("data-clipboard-text", window.location.href + "?" + $.param($('#url-form [name]').serializeObject()));
 //            console.log($('#url-form').serializeObject());
         return false;
@@ -50,7 +50,7 @@ $genURL.on("mouseenter", function () {
 });
 $('#url-generate-reset').on("click", function (e) {
     $('#url-form')[0].reset();
-    $('#generate .url').text(window.location.href + "?" $.param($('#url-form [name]').serializeObject()));
+    $('#generate .url').text(window.location.href + "?" + $.param($('#url-form [name]').serializeObject()));
     $genURL.attr("data-clipboard-text", window.location.href + "?" + $.param($('#url-form [name]').serializeObject()));
 });
 $('#color-picker').on('click', function (e) {
