@@ -470,18 +470,21 @@ var gamepadSupport = {
         
         // Update Wheel and Wheel specific buttons
         tester.queueWheel(gamepad.axes[0], gamepadId, 'steering-wheel');
-        tester.queueShifter(gamepad.buttons[12], gamepadId, 'shifter-1', 'up');
-        tester.queueShifter(gamepad.buttons[13], gamepadId, 'shifter-1', 'down');
-        tester.queueButton(gamepad.buttons[19], gamepadId, 'button-horn');
+        tester.queueShifter(gamepad.buttons[18], gamepadId, 'shifter-1', 'up');
+        tester.queueShifter(gamepad.buttons[19], gamepadId, 'shifter-1', 'down');
+        tester.queueButton(gamepad.buttons[22], gamepadId, 'button-horn');
         tester.queueButton(gamepad.buttons[5], gamepadId, 'paddle-left');
         tester.queueButton(gamepad.buttons[4], gamepadId, 'paddle-right');
         tester.queuePedal(gamepad.axes[2], gamepadId, 'pedal-gas');
         tester.queuePedal(gamepad.axes[5], gamepadId, 'pedal-brake');
-        tester.queueKnob(gamepad.buttons[16], gamepadId, 'knob', true);
-        tester.queueKnob(gamepad.buttons[17], gamepadId, 'knob', false);
-        tester.queueButton(gamepad.buttons[14], gamepadId, 'button-enter');
+        tester.queueKnob(gamepad.buttons[20], gamepadId, 'knob', true);
+        tester.queueKnob(gamepad.buttons[21], gamepadId, 'knob', false);
+        tester.queueButton(gamepad.buttons[23], gamepadId, 'button-enter');
         tester.queueButton(gamepad.buttons[11], gamepadId, 'stick-left');
         tester.queueButton(gamepad.buttons[10], gamepadId, 'stick-right');
+        
+        tester.queueButton(gamepad.buttons[24], gamepadId, 'button-plus');
+        tester.queueButton(gamepad.buttons[25], gamepadId, 'button-minus');
 
         // Update extraneous buttons.
         var extraButtonId = gamepadSupport.TYPICAL_BUTTON_COUNT;
