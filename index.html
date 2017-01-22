@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Racing Wheel Display</title>
+    <link rel="stylesheet" type="text/css" href="reset.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="queue.js"></script>
+    <script type="text/javascript" src="gamepad.js"></script>
+    <script type="text/javascript" src="tester.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.5/dist/clipboard.min.js"></script>
+    <style type="text/css" id="custom-css"></style>
+</head>
+
+<body>
+<div class="navbar ty hide-me" id="thanks">
+    <div class="content">
+        <span>Thank you so much for donating! You're awesome!</span>
+    </div>
+</div>
+
+<div class="navbar hide-me">
+    <div class="content">
+        <div class="left">
+            <a href="#menu">
+                <i class="material-icons menu-button">menu</i>
+            </a>
+        </div>
+        <div class="center pselect">
+            <div class="left">
+                <span>Currently Viewing: </span>
+                <select class="player">
+                    <option>None</option>
+                    <option value="gamepad-0">Player 1</option>
+                    <option value="gamepad-1">Player 2</option>
+                    <option value="gamepad-2">Player 3</option>
+                    <option value="gamepad-3">Player 4</option>
+                </select>
+            </div>
+            <a href="#" id="color-picker" class="left"><i class="material-icons">color_lens</i></a>
+            <input type="color" id="color-picker-input" value="#8B4513">
+        </div>
+    </div>
+</div>
+<div class="navbar nocon hide-me">
+    <div class="content">
+        <div class="left">
+            <ul>
+                <li class="box alert">
+                    <span><i class="fa fa-exclamation-circle"></i></span>
+                </li>
+            </ul>
+            <span>There are currently no gamepads connected. Press any button to enable...</span>
+        </div>
+        <span class="clear"></span>
+    </div>
+</div>
+
+<div class="slideout-menu hide-me" id="menu">
+    <a class="bglink" href="#">
+        <div class="modal-bg"></div>
+    </a>
+
+    <div class="menu">
+        <h1><i class="material-icons">videogame_asset</i> Racing Wheel Display</h1>
+        
+        <ul>
+            <li><a href="#generate"><i class="material-icons">link</i><span>Generate URL</span></a>
+            </li>
+            <li><a href="#remap"><i class="material-icons">gamepad</i><span>Remap Buttons</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="modals" class="hide-me">
+    <div id="modal-template" class="modal-container">
+        <a class="bglink" href="#">
+            <div class="modal-bg"></div>
+        </a>
+
+        <div class="modal">
+            <header class="minimenu">
+                <!--Nuke everything in here when copying the menu-->
+                <ul>
+                    <li><a href="#generate">Generate URL</a></li>
+                    <li><a href="#remap">Remap Buttons</a></li>
+                </ul>
+            </header>
+            <header>
+                <a class="close" href="#">&times;</a>
+
+                <h1>Parameters List</h1>
+            </header>
+            <article>
+                <p>Ayyy</p>
+            </article>
+        </div>
+    </div>
+    <div id="generate" class="modal-container">
+        <a class="bglink" href="#">
+            <div class="modal-bg"></div>
+        </a>
+
+        <div class="modal">
+            <header class="minimenu">
+            </header>
+            <header>
+                <a class="close" href="#">&times;</a>
+
+                <h1>Generate Custom URL</h1>
+            </header>
+            <article>
+                <div class="codeblock" id="generated-url" data-clipboard-text="" data-message="">
+                    <span class="url"></span></div>
+                <div class="codeblock" id="url-generate-reset"><span>Reset</span></div>
+                <span class="clear"></span>
+
+                <form id="url-form">
+                    <div class="form-group"><label for="p-input">Player Number: </label><select id="p-input" name="p">
+                        <option value="">None (Meant for Chroma-Key users)</option>
+                        <option selected value="1">Player 1</option>
+                        <option value="2">Player 2</option>
+                        <option value="3">Player 3</option>
+                        <option value="4">Player 4</option>
+                    </select><span class="clear"></span></div>
+                    <div class="form-group"><label for="sc-input">Scale Modifier: </label><input id="sc-input"
+                                                                                                 type="text" name="sc"
+                                                                                                 placeholder="1 = Normal, 2 = 2x, .5 = Half, etc..."/><span
+                            class="clear"></span></div>
+                    <div class="form-group"><label for="op-input">Opacity Value: </label><input id="op-input"
+                                                                                                type="text"
+                                                                                                name="op"
+                                                                                                placeholder="Number from 0.0 to 1.0"/><span
+                            class="clear"></span></div>
+                    <div class="form-group"><label for="delay-input">Delay Value: </label><span
+                            class="input-unit">ms</span><input id="delay-input"
+                                                               type="text"
+                                                               name="delay"
+                                                               placeholder="1000 = 1 second"/><span
+                            class="clear"></span></div>
+                    <div class="form-group"><label for="soffset-input">Stick Offset Value: </label><span
+                            class="input-unit">px</span><input id="soffset-input"
+                                                               type="text"
+                                                               name="soffset"
+                                                               placeholder="Default is 22"/><span
+                            class="clear"></span></div>
+                    <div class="form-group"><label for="css-input">Custom CSS URL: </label><input id="css-input"
+                                                                                                  type="text"
+                                                                                                  name="css"
+                                                                                                  placeholder="http://url.to/custom/stylesheet.css"/><span
+                            class="clear"></span></div>
+                    <div class="form-group"><label for="editcss-input">Edit CSS URL: </label><input id="editcss-input"
+                                                                                                    type="text"
+                                                                                                    name="editcss"
+                                                                                                    placeholder="http://url.to/custom/stylesheet.css"/><span
+                            class="clear"></span></div>
+                    <input type="text" name="map" id="map-input" hidden>
+                </form>
+            </article>
+        </div>
+    </div>
+    <div id="remap" class="modal-container">
+        <a class="bglink" href="#">
+            <div class="modal-bg"></div>
+        </a>
+
+        <div class="modal">
+            <header class="minimenu">
+            </header>
+            <header>
+                <a class="close" href="#">&times;</a>
+
+                <h1>Button Rebinding</h1>
+            </header>
+            <article>
+                <p>Please select the controller to use as a mapping base.
+                    <select id="player-base">
+                        <option>None</option>
+                        <option value="0" disabled>Player 1</option>
+                        <option value="1" disabled>Player 2</option>
+                        <option value="2" disabled>Player 3</option>
+                        <option value="3" disabled>Player 4</option>
+                    </select>
+                </p>
+                <div id="output-display">
+                    <div class="raw-outputs template">
+                        <div><h3>Axes</h3>
+                            <ul class="axes">
+                            </ul>
+                        </div>
+                        <div><h3>Buttons</h3>
+                            <ul class="buttons">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="mapping-config">
+                    <a href="#" id="prepend-mapping" class="map-control"><i class="material-icons">add_circle</i> Add
+                        New Mapping</a>
+                    <a href="https://www.youtube.com/watch?v=b5OxYt0RNzc" target="_blank" id="mapping-help"
+                       class="map-control">Need Help?</a>
+
+                    <div class="template">
+                        <div class="form-group">
+                            <div class="map-message"></div>
+                            <input type="radio" name="targetType" value="buttons" checked>
+                            <input type="radio" name="targetType" value="axes">
+                            <input type="radio" name="targetType" value="dpad">
+                            <input type="checkbox" class="material-icons axes-config" value="false">
+                            <select name="buttons" value>
+                                <option title="Button 0" value="0">A/Cross</option>
+                                <option title="Button 1" value="1">B/Circle</option>
+                                <option title="Button 2" value="2">X/Square</option>
+                                <option title="Button 3" value="3">Y/Triangle</option>
+                                <option title="Button 4" value="4">LB/L1</option>
+                                <option title="Button 5" value="5">RB/R1</option>
+                                <option title="Button 6" value="6">LT/L2</option>
+                                <option title="Button 7" value="7">RT/R2</option>
+                                <option title="Button 8" value="8">Select/Back</option>
+                                <option title="Button 9" value="9">Start</option>
+                                <option title="Button 10" value="10">LS/L3</option>
+                                <option title="Button 11" value="11">RS/R3</option>
+                                <option title="Button 12" value="12">D-Pad Up</option>
+                                <option title="Button 13" value="13">D-Pad Down</option>
+                                <option title="Button 14" value="14">D-Pad Left</option>
+                                <option title="Button 15" value="15">D-Pad Right</option>
+                                <option title="Button 16" value="16">PS Button</option>
+                                <option title="Button 17" value="17">TouchPad Press</option>
+                            </select>
+                            <select name="axes" value>
+                                <option title="Axis 0" value="0">LS Horizontal</option>
+                                <option title="Axis 1" value="1">LS Vertical</option>
+                                <option title="Axis 2" value="2">RS Horizontal</option>
+                                <option title="Axis 3" value="3">RS Vertical</option>
+                            </select>
+                            <input type="checkbox" class="disable-item" value="true">
+                            <button data-tooltip="Positive Axis" data-button="positive" data-button-type="remapping"
+                                    data-object="">Click to Set
+                            </button>
+                            <button data-tooltip="Negative Axis" data-button="negative" data-button-type="remapping"
+                                    data-object="">Click to Set
+                            </button>
+                            <a href="#" class="material-icons del-config">remove_circle</a>
+                            <a href="#" class="material-icons add-config">add_circle</a>
+
+                            <div class="fix-panel fix-axes">
+                                <span>Fix Type: </span>
+                                <select name="fix-type">
+                                    <option value="trigger">Trigger (0 to 1)</option>
+                                    <option value="stick">Stick (-1 to 1)</option>
+                                </select>
+                                <button data-tooltip="Lowest Value" data-button="low-value" data-button-type="value">
+                                    Click to Set Value
+                                </button>
+                                <button data-tooltip="Highest Value" data-button="high-value" data-button-type="value">
+                                    Click to Set Value
+                                </button>
+                            </div>
+
+                            <ul class="fix-panel fix-dpad">
+                                <li><span>Up: </span>
+                                    <button data-button="up" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Down: </span>
+                                    <button data-button="down" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Left: </span>
+                                    <button data-button="left" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Right: </span>
+                                    <button data-button="right" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Up and Right: </span>
+                                    <button data-button="upright" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Up and Left: </span>
+                                    <button data-button="upleft" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Down and Right: </span>
+                                    <button data-button="downright" data-button-type="value">Click to Set Value</button>
+                                </li>
+                                <li><span>Down and Left: </span>
+                                    <button data-button="downleft" data-button-type="value">Click to Set Value</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="mappings"></div>
+                    <div class="button-group">
+                        <button id="export-mapping">Export Mapping to URL Generator</button>
+                        <button id="apply-mapping">Apply Mapping</button>
+                        <span class="clear"></span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <!--
+        <div id="showcase" class="modal-container">
+            <a class="bglink" href="#">
+                <div class="modal-bg"></div>
+            </a>
+
+            <div class="modal">
+                <header class="minimenu">
+                </header>
+                <header>
+                    <a class="close" href="#">&times;</a>
+
+                    <h1>Skin Showcase</h1>
+                </header>
+                <article>
+                    <p>Skins</p>
+                    <div class="showcase-group">
+                        <input type="checkbox"  title="" data-heading="Custom Skins"/>
+                        <div class="showcase-list">
+                            <div class="showcase-item">
+                                <div class="preview">
+                                    <iframe src="http://mrmcpowned.com/gamepad/?p=1&s=5&sc=.245" frameborder="0"></iframe>
+                                </div>
+                                <div class="description">
+                                    <h3>This is </h3>
+                                </div>
+                                <span class="clear"></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    -->
+    <div id="adoptaskin" class="modal-container">
+        <a class="bglink" href="#">
+            <div class="modal-bg"></div>
+        </a>
+
+        <div class="modal">
+            <header class="minimenu">
+            </header>
+            <header>
+                <a class="close" href="#">&times;</a>
+
+                <h1>Adopt a Skin</h1>
+            </header>
+            <article>
+                <p>All the currently served skins are made by me. I usually make them in my spare time when I'm not
+                    working on the site itself. I also will usually make them to take care of the demand for a certain
+                    skin. I don't get paid to offer this service to all of you, and I know some of you have been wanting
+                    skins made for some fairly obscure controllers, so as of right now you can adopt a skin! So, what
+                    does it mean to adopt a skin? Well, the perks are as follows:</p>
+                <ul>
+                    <li>You get a "thank you" link under the Donations page</li>
+                    <li>In the upcoming Skin Showcase, you'll have an "Adopted by" next to the skin, also with your link
+                        of choice
+                    </li>
+                    <li>You get a copy of all the CSS and Assets for that skin to do with as you please</li>
+                    <li>The files will be hosted on this site for easy access and use</li>
+                </ul>
+                <p>While there are perks, there are also some stipulations, which are listed below:</p>
+                <ul>
+                    <li>The skin will be available to <strong>all users</strong>. This is why it's called "adopt a
+                        skin", although if you like, you have the option to exclusively use it for a MAXIMUM of 1 month.
+                    </li>
+                    <li>As not every skin is the same, I can't really place a flat price on all of them, but the
+                        baseline pricing is $25.
+                    </li>
+                    <li>Adopting a skin is a commitment, both on your part and mine. It takes time and vast amounts of
+                        effort for me to make these skins to the standard of quality I place. Because of this, the
+                        payment process will consist of 50% of the cost up front, and the other 50% at time of delivery.
+                        If you back out or decide not to pay the last half, I am entitled to keep the initial payment as
+                        a severance charge.
+                    </li>
+                </ul>
+                <p>If you agree to the terms described above, clicking the button below will open the contact page with
+                    the proper subject selected</p>
+                <a href="#contact" id="skin-tc">I agree to the Terms and Conditions stated above and would like to
+                    inquire about skin
+                    adoption.</a>
+
+            </article>
+        </div>
+    </div>
+    <div id="contact" class="modal-container">
+        <a class="bglink" href="#">
+            <div class="modal-bg"></div>
+        </a>
+
+        <div class="modal">
+            <header class="minimenu">
+            </header>
+            <header>
+                <a class="close" href="#">&times;</a>
+
+                <h1>Contact Me</h1>
+            </header>
+            <article>
+                <p>If you want to send me a message about asking me a question or anything like that, just send me an
+                    email using the form below. </p>
+
+                <form action="mailer.php" id="contact-form" method="post">
+                    <div id="messages" class=""></div>
+                    <div class="form-group"><input type="text" placeholder="Full Name" name="name" required></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email" name="email" required></div>
+                    <div class="form-group">
+                        <select name="subject" required>
+                            <option value="general" selected>General Inquiry</option>
+                            <option value="skin">Skin Adoption Inquiry</option>
+                            <option value="help">Gamepad Viewer Help</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><textarea name="message" minlength="80" required></textarea></div>
+                    <div class="g-recaptcha" data-sitekey="6LeUaQwUAAAAAMfeh74M-VE-m2ddppIICvdYePS_"></div>
+                    <div class="button-group">
+                        <button type="reset">Reset</button>
+                        <button type="submit">Submit</button>
+                    </div>
+                    <span class="clear"></span>
+                </form>
+            </article>
+        </div>
+    </div>
+    <div id="donate" class="modal-container">
+        <a class="bglink" href="#">
+            <div class="modal-bg"></div>
+        </a>
+
+        <div class="modal">
+            <header class="minimenu">
+            </header>
+            <header>
+                <a class="close" href="#">&times;</a>
+
+                <h1>Donations</h1>
+
+            </header>
+            <article>
+                <div class="left">
+
+                    <p>I'm a fair believer in the honor system, so I believe it's up to you to set the amount of what
+                        you
+                        think my tools are worth to you. Below, you can choose to give me a donation via PayPal (through
+                        Twitch Alerts) or via bitcoin if that's an option you prefer. I've also <a
+                                href="https://www.patreon.com/mrmcpowned" target="_blank">set up a Patreon</a> for those
+                        who wish to donate via that.</p>
+
+                    <div class="info">
+                        <div>
+                            <h2>Skin Adopters</h2>
+                            <ul>
+                                <li><a href="https://twitch.tv/kingradinov" target="_blank">King Radinov</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <!--
+                                                    <h2>CLR Browser Installation</h2>
+                                                    <ol>
+                                                        <li>Head to the <a href="#generate">URL Generator</a> to create your own gamepad URL</li>
+                                                        <li>Click on the generated preview URL to copy it</li>
+                                                        <li>In OBS, create a new CLR Browser source</li>
+                                                        <li>Paste the copied URL in the "URL" text box in the browser source</li>
+                                                        <li>The width and height will require playing around with inorder to get the right values,
+                                                            so simply work your way up or down from the default values the source already has set
+                                                        </li>
+                                                        <li>Click "OK" and you're done!</li>
+                                                    </ol>
+                            -->
+                        </div>
+                        <span class="clear"></span>
+                    </div>
+                </div>
+
+                <div class="donate-buttons">
+                    <a target="_blank"
+                       href="https://www.patreon.com/mrmcpowned">
+                        <div class="amzn dbutton"><i class="fa fa-patreon"></i><span>Support via Patreon!</span></div>
+                    </a>
+                    <a target="_blank" href="https://greenaddress.it/pay/GA3NubGP8aLdjYbNHqH72SGAUyBWu3/">
+                        <div class="btc dbutton"><i class="fa fa-btc"></i><span>Bitcoin</span></div>
+                    </a>
+                    <a target="_blank" href="https://www.twitchalerts.com/donate/mrmcpowned">
+                        <div class="pp dbutton"><i class="fa fa-paypal"></i><span>PayPal</span></div>
+                    </a>
+                </div>
+
+            </article>
+        </div>
+    </div>
+    
+</div>
+
+<div class="container" id="gamepads">
+    <div class="template">
+        <div class="wheel-base">
+            <div class="wheel" data-name="steering-wheel">
+                <div class="paddles">
+                    <div class="paddle left" data-name="paddle-left"></div>
+                    <div class="paddle right" data-name="paddle-right"></div>
+                </div>
+                <div class="triggers">
+                    <span class="trigger left" data-name="button-left-shoulder-bottom"></span>
+                    <span class="trigger right" data-name="button-right-shoulder-bottom"></span>
+                    <span class="trigger-button left" data-name="button-left-shoulder-bottom-digital"></span>
+                    <span class="trigger-button right" data-name="button-right-shoulder-bottom-digital"></span>
+                </div>
+                <div class="horn" data-name="button-horn"></div>
+                <div class="quadrant"></div>
+                <div class="meta" data-name="button-meta"></div>
+                <div class="arrows">
+                    <span class="back" data-name="button-select"></span>
+                    <span class="start" data-name="button-start"></span>
+                    <span class="clear"></span>
+                </div>
+                <div class="analog-buttons">
+                    <div class="stick left" data-name="stick-left"></div>
+                    <div class="stick right" data-name="stick-right"></div>
+                </div>
+                <div class="plus-minus">
+                    <div class="plus" data-name="button-plus"></div>
+                    <div class="minus" data-name="button-minus"></div>
+                </div>
+                <div class="knob" data-name="knob" data-rotation="0"></div>
+                <div class="enter-button" data-name="button-enter"></div>
+                <div class="dpad">
+                    <span class="face up" data-name="button-dpad-top"></span>
+                    <span class="face down" data-name="button-dpad-bottom"></span>
+                    <span class="face left" data-name="button-dpad-left"></span>
+                    <span class="face right" data-name="button-dpad-right"></span>
+                </div>
+                <div class="abxy">
+                    <span class="button a" data-name="button-1"></span>
+                    <span class="button b" data-name="button-2"></span>
+                    <span class="button x" data-name="button-3"></span>
+                    <span class="button y" data-name="button-4"></span>
+                </div>
+                <!--Unnecessary but sentimental bits-->
+                <div class="touchpad" data-name="touch-pad"></div>
+                <div class="sticks">
+                    <span class="stick left" data-name="stick-1"></span>
+                    <span class="stick right" data-name="stick-2"></span>
+                </div>
+                <div class="fstick" data-name="arcade-stick"></div>
+            </div>
+            <div class="shifter" data-name="shifter-1"></div>
+        </div>
+        <div class="pedals">
+            <div class="pedal clutch" data-name="pedal-clutch"></div>
+            <div class="pedal brake" data-name="pedal-brake"></div>
+            <div class="pedal gas" data-name="pedal-gas"></div>
+        </div>
+    </div>  
+    <div class="controller dfgt" id="gamepad-0"></div>
+    <div class="controller dfgt" id="gamepad-1"></div>
+    <div class="controller dfgt" id="gamepad-2"></div>
+    <div class="controller dfgt" id="gamepad-3"></div>
+</div>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript">
+    tester.init();
+    gamepadSupport.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,1429 @@
+/*Font Imports*/
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+/*Top Level Elements*/
+::selection {
+    background: rgba(9, 63, 59, 0.75);
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+html, body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: saddlebrown;
+    overflow-y: hidden;
+}
+
+a {
+    color: #FF5722;
+    text-decoration: underline;
+}
+
+b {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+h2 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+/*Container classes and whatnot*/
+.container {
+    width: 668px;
+    margin: 0 auto;
+}
+
+.clear {
+    clear: both;
+    display: block;
+}
+
+/*Now here's where the fun begins...*/
+.controller {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    margin-top: 30px !important;
+    margin-left: 0px !important;
+}
+
+.controller.half {
+    margin-top: 0px !important;
+}
+
+.controller.dfgt {
+    height: 685px;
+    width: 1250px;
+    /*    margin-left: -375px;
+        margin-top: -285px;*/
+}
+
+.dfgt.disconnected {
+    background: url(dfgt-assets/disconnected.svgz);
+}
+
+.dfgt.disconnected div {
+    display: none;
+}
+
+.dfgt .wheel-base {
+    background: url(dfgt-assets/base.svg) no-repeat;
+    height: 100%;
+    width: 821px;
+    background-position: left calc(100% - 96px);
+}
+
+.dfgt .wheel {
+    width: 685.299px;
+    height: 683.538px;
+    background: url(dfgt-assets/wheel.svg) no-repeat;
+    background-position: center;
+    transform-origin: 50% calc(50% - .2px);
+}
+
+.dfgt .triggers {
+    width: 392px;
+    height: 61px;
+    position: absolute;
+    left: calc(50%);
+    top: calc(35%);
+    transform: translate(-50%);
+}
+
+/* .dfgt .trigger {
+    width: 88px;
+    height: 121px;
+    background: url(dfgt-assets/trigger.svgz);
+    opacity: 0;
+}
+ */
+.dfgt .trigger-button.left.pressed:after, .dfgt .trigger-button.right.pressed:after {
+    font-size: 20px;
+    color: white;
+    text-shadow: 0 0 1px black, 1px 0 1px black, 0 1px 1px black, 1px 1px 1px black, -1px 0 1px black, 0 -1px 1px black, -1px -1px 1px black;
+    transform-origin: right bottom;
+    transform: rotate(13deg)
+}
+
+.dfgt .trigger-button.left.pressed:after {
+    float: right;
+    content: "R2 Pressed"
+}
+
+.dfgt .trigger-button.right.pressed:after {
+    float: left;
+    content: "L2 Pressed";
+    transform-origin: left bottom;
+    transform: rotate(-13deg)
+}
+
+.dfgt .horn {
+    width: 127px;
+    height: 127px;
+    position: absolute;
+    left: calc(50% - 63px);
+    top: calc(50% - 70px);
+    background: url(dfgt-assets/horn-pressed.svg);
+    opacity: 0;
+}
+
+.dfgt .meta {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: calc(50% - 16px);
+    top: calc(60% - -3px);
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.dfgt .bumper {
+    width: 170px;
+    height: 61px;
+    background: url(dfgt-assets/bumper.svgz);
+    opacity: 0;
+}
+
+.dfgt .bumpers {
+    position: absolute;
+    width: 536px;
+    height: 61px;
+    left: 107px;
+    top: 129px;
+}
+
+.dfgt .bumper.pressed {
+    opacity: 1;
+}
+
+.dfgt .bumper.left {
+    float: left;
+}
+
+.dfgt .bumper.right {
+    float: right;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.dfgt .arrows {
+    position: absolute;
+    width: 57px;
+    height: 14px;
+    bottom: calc(28% - 2px);
+    left: calc(46%);
+}
+
+.dfgt .back, .dfgt .start {
+    background: url(dfgt-assets/start-select-pressed.svg) no-repeat;
+    width: 20px;
+    height: 13px;
+    opacity: 0;
+}
+
+.dfgt .back.pressed, .dfgt .start.pressed {
+    opacity: 1;
+}
+
+.dfgt .back {
+    float: left;
+}
+
+.dfgt .start {
+    background-position: -21px 0px;
+    float: right;
+}
+
+.dfgt .analog-buttons {
+    width: 171.59px;
+    height: 44.8px;
+    position: absolute;
+    left: calc(50% - 86px);
+    top: calc(35%);
+}
+
+.dfgt .analog-buttons .stick {
+    width: 47px;
+    height: 45.299px;
+    background: url(dfgt-assets/analog-pressed.svg) no-repeat;
+    opacity: 0;
+}
+
+.dfgt .analog-buttons .stick.left {
+    float: left;
+}
+
+.dfgt .analog-buttons .stick.right {
+    float: right;
+}
+
+.dfgt .plus-minus {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    bottom: calc(33%);
+    left: calc(32% + 4px);
+}
+
+.dfgt .plus, .dfgt .minus {
+    height: 34px;
+    background: url(dfgt-assets/updown-pressed.svg) no-repeat;
+    opacity: 0;
+}
+
+.dfgt .minus {
+    background-position: 0 -39px;
+    position: relative;
+    bottom: -7px;
+}
+
+.dfgt .knob {
+    width: 89px;
+    height: 89px;
+    position: absolute;
+    left: calc(56% - 1px);
+    bottom: calc(32% - 2px);
+    background: url(dfgt-assets/knob-wheel.svg) no-repeat center;
+}
+
+.dfgt .enter-button {
+    width: 59px;
+    height: 59px;
+    position: absolute;
+    left: calc(58%);
+    bottom: calc(34%);
+    background: url(dfgt-assets/enter-button.svg) no-repeat;
+}
+
+.dfgt .enter-button.pressed {
+    background-position: -61px 0px;
+}
+
+.dfgt .abxy {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    top: calc(41% - 1px);
+    left: calc(70% + 3px);
+}
+
+.dfgt .button {
+    position: absolute;
+    background: url(dfgt-assets/abxy-pressed.svg) no-repeat;
+    width: 25px;
+    height: 25px;
+    opacity: 0;
+}
+
+.dfgt .a {
+    background-position: 0px 0;
+    bottom: 0;
+    right: calc(50% - 12.5px);
+}
+
+.dfgt .b {
+    background-position: -27px 0;
+    top: calc(50% - 12.5px);
+    right: 0px;
+}
+
+.dfgt .x {
+    background-position: -54px 0;
+    top: calc(50% - 12.5px);
+    left: 0;
+}
+
+.dfgt .y {
+    background-position: -81px 0;
+    left: calc(50% - 12.5px);
+    top: 0;
+}
+
+.dfgt .dpad {
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    top: calc(42%);
+    left: calc(20% + 2px);
+}
+
+.dfgt .face {
+    background: url(dfgt-assets/dpad-pressed.svg) no-repeat;
+    position: absolute;
+    opacity: 0;
+}
+
+.dfgt .face.pressed {
+    opacity: 1;
+}
+
+.dfgt .face.up {
+    background-position: 0 0;
+    left: 21px;
+    top: 0px;
+    width: 17px;
+    height: 29px;
+}
+
+.dfgt .face.down {
+    background-position: -18px 0;
+    left: 21px;
+    bottom: 0px;
+    width: 17px;
+    height: 29px;
+}
+
+.dfgt .face.left {
+    background-position: -67px 0;
+    width: 29px;
+    height: 17px;
+    top: 21px;
+    left: 0;
+}
+
+.dfgt .face.right {
+    background-position: -37px 0;
+    width: 29px;
+    height: 17px;
+    top: 21px;
+    right: 0;
+}
+
+.dfgt .shifter {
+    width: 116px;
+    height: 159px;
+    position: absolute;
+    right: calc(36% - 8px);
+    bottom: calc(45%);
+    background: url(dfgt-assets/shifter.svg) no-repeat;
+    transform-origin: bottom;
+}
+
+.dfgt .shifter.up {
+    transform: rotateX(-15deg);
+}
+
+.dfgt .shifter.up:after, .dfgt .shifter.down:after {
+    content: "+";
+    display: block;
+    position: absolute;
+    color: white;
+    font-size: 50px;
+    left: 50%;
+    transform: translate(-50%);
+    top: 20%;
+}
+
+.dfgt .shifter.down:after {
+    content: "-";
+}
+
+.dfgt .shifter.down {
+    transform: rotateX(15deg);
+}
+
+.dfgt .pedals {
+    width: 365px;
+    height: 56px;
+    background: hsl(60, 5%, 8%);
+    position: absolute;
+    right: 0px;
+    bottom: 200px;
+    border-radius: 5px
+}
+
+.dfgt .pedal {
+    position: absolute;
+    transform-origin: bottom;
+    bottom: 45px
+}
+
+.dfgt .pedal.brake {
+    width: 122px;
+    height: 192px;
+    background: url(dfgt-assets/brake.svg) no-repeat;
+    left: 20px
+}
+
+.dfgt .pedal.gas {
+    width: 122px;
+    height: 207px;
+    background: url(dfgt-assets/gas.svg) no-repeat;
+    right: 30px
+}
+
+.dfgt.half {
+    margin-top: -419px;
+}
+
+.dfgt {
+    background: no-repeat center;
+}
+
+.dfgt .pressed {
+    opacity: 1 !important;
+}
+
+/*Navbar Elements & their inner contents*/
+.navbar {
+    height: 50px;
+    background: cornflowerblue;
+    border-bottom: 1px solid #5570b8;
+    color: white;
+    width: 100%;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+
+.nocon {
+    background: indianred;
+    border-bottom: none;
+    border-top: 1px solid #FF7474;
+    bottom: 0;
+    top: auto;
+}
+
+.nocon.visible, .pselect.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.nocon ul {
+    float: left;
+    display: inline-block;
+}
+
+.navbar .content {
+    font-size: 25px;
+    width: 960px;
+    display: flex;
+    margin: 0 auto;
+    line-height: 50px;
+    justify-content: space-between;
+}
+
+/*.navbar .content .left {
+    float: left;
+}
+
+.navbar .content .right {
+    float: right;
+}*/
+
+.right a.button {
+    top: 0;
+    background: #FF9900;
+    box-sizing: border-box;
+    padding: 5px;
+    display: inline-block;
+    line-height: normal;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.74);
+    border-radius: 3px;
+    margin: 4px;
+}
+
+.navbar .content .center {
+    display: flex;
+}
+
+.pselect, .nocon {
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.tooltip {
+    display: inline;
+    position: relative;
+}
+
+.tooltip:after {
+    bottom: 13px;
+    color: rgb(255, 255, 255);
+    content: attr(data-tooltip) '\279F';
+    display: block;
+    left: -240px;
+    position: absolute;
+    text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+    white-space: nowrap;
+    font-size: 0.5em;
+    text-align: right;
+    line-height: 25px;
+    animation: helptip 7s 1 forwards;
+    -webkit-animation-delay: 4s;
+    -moz-animation-delay: 4s;
+    -o-animation-delay: 4s;
+    animation-delay: 4s;
+}
+
+.box {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    font-size: 30pt;
+    font-weight: 700;
+    float: left;
+}
+
+.box a, .box label {
+    text-decoration: none;
+    display: block;
+    height: 50px;
+    width: 50px;
+}
+
+#color-picker {
+    display: inline-block;
+    width: 50px;
+    color: whitesmoke;
+    line-height: normal;
+}
+
+#color-picker i {
+    font-size: 42px;
+    transform: translateY(8%);
+}
+
+#color-picker-input {
+    transform: scale(0);
+}
+
+
+.box .fa {
+    line-height: 50px;
+    display: block;
+}
+
+
+.hc {
+    width: 960px;
+    display: block;
+    margin: 0 auto;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    color: white;
+}
+
+.hc .content {
+    background: royalblue;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.title {
+    width: 100%;
+    line-height: normal;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.title h1 {
+    float: left;
+}
+
+.title .close {
+    float: right;
+    margin: 8px;
+}
+
+.title .close a {
+    text-decoration: none;
+    font-size: 19pt;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    line-height: 100%;
+    background: red;
+    text-align: center;
+    border-radius: 25px;
+    font-weight: 700;
+    color: white;
+}
+
+.column {
+    width: 30%;
+    float: left;
+    padding-right: 45px;
+}
+
+.column.last {
+    padding: 0;
+}
+
+.overflow {
+    position: fixed;
+    width: 100%;
+    top: 50px;
+    z-index: 1;
+}
+
+.text {
+    margin-bottom: 5px;
+}
+
+.text ol {
+    display: block;
+    list-style: decimal inside;
+}
+
+.text li {
+    padding: 0 0px 5px 0px;
+}
+
+.uc {
+    background: orange;
+    z-index: 11;
+    border-bottom: 1px solid darkorange;
+    display: none;
+}
+
+.update {
+    background: darkred;
+    z-index: 11;
+    border-bottom: 1px solid rgb(125, 0, 0);
+    display: none;
+}
+
+.message {
+    display: block;
+    -webkit-animation: messagefade 6s forwards;
+    -moz-animation: messagefade 6s forwards;
+    animation: messagefade 6s forwards;
+}
+
+.message span {
+    width: 100%;
+}
+
+
+/*CSS Slideout Menu*/
+a .menu-button {
+    color: white;
+    font-size: 36px;
+    vertical-align: text-bottom;
+    -webkit-transform: scaleX(0.75);
+    -moz-transform: scaleX(0.75);
+    transform: scaleX(0.75);
+}
+
+a:active .menu-button {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+.slideout-menu {
+    z-index: 13;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    transition: all .5s;
+    transition-delay: .1s;
+    transition-timing-function: cubic-bezier(0.27, 1.29, 0.63, 1);
+}
+
+.slideout-menu:target {
+    visibility: visible;
+}
+
+.slideout-menu:target .menu {
+    transform: translateX(0px);
+    box-shadow: black -1px 0 10px;
+}
+
+.slideout-menu:target .modal-bg {
+    transition-delay: 0s;
+    transition-duration: .5s;
+}
+
+.menu {
+    width: 400px;
+    height: 100%;
+    background: whitesmoke;
+    position: absolute;
+    transition: transform cubic-bezier(0.4, 0, 0.2, 1) .4s;
+    transform: translateX(-400px);
+}
+
+.yt-contain {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+
+}
+
+.yt-contain iframe, .yt-contain object, .yt-contain embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.menu ul {
+    height: calc(100% - 50px);
+    overflow-y: auto;
+}
+
+.menu .yt-contain + ul {
+    height: calc(100% - 275px);
+}
+
+.menu a {
+    /* vertical-align: baseline; */
+    display: block;
+    padding: 10px;
+    font-size: 26px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.65);
+    transition: background ease .5s;
+}
+
+.menu li span {
+    vertical-align: top;
+}
+
+.menu i {
+    font-size: 28px;
+    margin-right: 4px;
+}
+
+.menu h1 {
+
+    font-size: 30px;
+    padding: 10px;
+    background: darkred;
+    color: floralwhite;
+    padding-left: 64px;
+}
+
+.menu h1 i.material-icons {
+    font-size: 48px;
+    position: absolute;
+    left: 10px;
+    top: 2px;
+}
+
+.menu {
+    /*position: relative;*/
+}
+
+.menu .divider {
+    border-bottom: 1px solid gray;
+    margin: 10px 50px;
+}
+
+.menu a:hover {
+    background: rgba(0, 0, 0, 0.20);
+}
+
+/* CSS Modals */
+.modal-container {
+    /*background: rgba(0, 0, 0, 0);*/
+    z-index: 13;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    transition: all .5s;
+    transition-delay: .1s;
+    transition-timing-function: cubic-bezier(0.27, 1.29, 0.63, 1);
+    overflow: hidden;
+}
+
+.modal-container:target {
+    visibility: visible;
+    /*background: rgba(0, 0, 0, 0.61);*/
+}
+
+.modal-container:target .modal {
+    opacity: 1;
+    transform: scale(1) rotateX(0deg) translateY(0%);
+    /*animation: modal-flow .5s;*/
+    /*animation-timing-function: cubic-bezier(0.27, 1.29, 0.63, 1);*/
+
+}
+
+.modal-bg {
+    background: rgba(0, 0, 0, 0);
+    transition: all .5s cubic-bezier(0.27, 1.29, 0.63, 1) .1s;
+    width: 100%;
+    height: 100%;
+}
+
+.bglink {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+}
+
+.modal-container:target .modal-bg, .slideout-menu:target .modal-bg {
+    background: rgba(0, 0, 0, 0.61);
+}
+
+.modal {
+    width: 870px;
+    /*height: calc(100% - 100px);*/
+    max-height: calc(100% - 100px);
+    min-height: 415px;
+    display: flex;
+    flex-flow: column;
+    background: whitesmoke;
+    margin: 40px auto 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    opacity: 0;
+    transform: scale(1.4) rotateX(60deg) translateY(-100%);
+    transform-origin: center -70px;
+    transition: all .7s cubic-bezier(0.27, 1.29, 0.63, 1) .1s, opacity 100ms ease .1s;
+    /*animation: modal-flow .5s reverse;*/
+    /*animation-timing-function: cubic-bezier(0.27, 1.29, 0.63, 1);*/
+}
+
+.modal article {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 18px;
+    overflow-y: auto;
+    flex: 1 1 auto;
+}
+
+/* Unnecessary fix since this flexbox bug has been fixed
+
+.modal article > :first-child {
+    margin-top: 18px;
+}
+
+.modal article > :last-child {
+    margin-bottom: 18px;
+}*/
+
+.modal h1 {
+    font-size: 3em;
+}
+
+.modal a.close {
+    float: right;
+    display: inline-block;
+    text-align: center;
+    font-size: 3em;
+    width: 1em;
+    text-decoration: none;
+    color: white;
+    border-radius: 3em;
+    text-shadow: rgba(0, 0, 0, 0.45) 0px 1px 3px;
+}
+
+.modal a.close:active, .modal a.close:hover {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+.modal .codeblock {
+    font-family: "Consolas", monospace;
+    background: lightgrey;
+    color: darkgoldenrod;
+    word-wrap: break-word;
+    border-radius: 5px;
+    border: 1px solid hsla(0, 0%, 77%, 1);
+    text-shadow: rgba(0, 0, 0, 0.44) 0 0 .1px;
+}
+
+.modal p {
+    margin-bottom: 15px;
+}
+
+.modal .minimenu {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.modal .minimenu li {
+    height: 100%;
+    display: table-cell;
+}
+
+.modal .minimenu li:hover, .modal .minimenu .selected {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.modal .minimenu a {
+    color: whitesmoke;
+    padding: 7px 8px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.modal .minimenu + header {
+    background: deepskyblue;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 35px 2% 2%;
+    flex: 0 0 100px;
+}
+
+#about .video {
+    float: right;
+    width: 50%;
+    margin-left: 10px;
+}
+
+.info {
+    clear: both;
+}
+
+.info div {
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.info ol {
+    list-style: decimal inside;
+}
+
+.info ol li {
+    margin-bottom: 5px;
+}
+
+.info div:nth-of-type(1) {
+    float: left;
+    padding-right: 1%;
+
+}
+
+.info div:nth-of-type(2) {
+    float: right;
+    padding-left: 1%;
+}
+
+.form-group {
+    margin-bottom: 8px;
+    font-size: 32px;
+    position: relative;
+}
+
+.form-group [id*=-input] {
+    float: right;
+    width: 535px;
+    padding: 0px;
+    border: none;
+    background: transparent;
+    border-bottom: rgba(0, 0, 0, 0.34) 1px solid;
+    text-align: center;
+    transition: border-bottom 0.2s ease-in;
+    font-size: 29px;
+}
+
+.form-group [id*=-input]:focus {
+    border-bottom: black 1px solid;
+    outline: none;
+}
+
+#url-form .form-group [type=checkbox]:before {
+    content: "Disabled";
+    color: lightgray;
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    width: 535px;
+    text-align: center;
+    background: rgba(255, 0, 0, .8);
+    border-radius: 3px;
+    right: -3px;
+}
+
+#url-form .form-group [type=checkbox]:checked:before {
+    content: "Enabled";
+    background: rgba(0, 110, 0, .8);
+}
+
+#url-form .form-group [type=checkbox] {
+    width: 0;
+    height: 0;
+    position: relative;
+}
+
+#url-form .form-group .flipped[type=checkbox]:before {
+    content: "Enabled";
+    background: rgba(0, 110, 0, .8);
+}
+
+#url-form .form-group .flipped[type=checkbox]:checked:before {
+    content: "Disabled";
+    background: rgba(255, 0, 0, .8);
+}
+
+.form-group .input-unit {
+    position: absolute;
+    right: 0;
+}
+
+.form-group .input-unit + [id*=-input] {
+    width: 474px;
+    padding-right: 60px;
+}
+
+.generator-container {
+    margin-top: 18px;
+    margin-bottom: 20px;
+}
+
+#generated-url {
+    font-size: 20pt;
+    padding: 18px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: inline-block;
+    width: 80%;
+    float: left;
+    position: relative;
+}
+
+#url-generate-reset {
+    font-size: 20pt;
+    padding: 18px;
+    float: right;
+    width: 10%;
+    cursor: pointer;
+}
+
+#url-generate-reset span {
+    text-align: center;
+    display: block;
+}
+
+/*Tooltip Stuff*/
+#generated-url:before, #generated-url:after {
+    display: block;
+    position: absolute;
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: whitesmoke;
+    transform: translatex(-50%);
+    opacity: 0;
+    transition: transform ease .3s, opacity ease .3s;
+
+}
+
+#generated-url:after {
+    content: attr(data-message);
+    padding: 8px;
+    border-radius: 31px;
+    left: 50%;
+    top: -15px;
+    background: black;
+}
+
+#generated-url:before {
+    content: " ";
+    border-left: transparent solid 9px;
+    width: 0px;
+    height: 0px;
+    border-right: transparent solid 9px;
+    border-top: rgb(0, 0, 0) solid 11px;
+    left: 50%;
+    margin-top: -1px;
+}
+
+#generated-url:hover:before, #generated-url:hover:after {
+    transform: translatex(-50%) translateY(-20px);
+    opacity: 1;
+}
+
+.raw-outputs {
+    display: none;
+}
+
+.raw-outputs.active {
+    display: block;
+}
+
+.raw-outputs li {
+    display: inline-block;
+    min-width: 40px;
+    text-align: right;
+    padding: 20px 5px 5px 10px;
+    background: deepskyblue;
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 5px 5px 0;
+    opacity: .6;
+}
+
+.raw-outputs li.disabled {
+    background: orangered;
+}
+
+.raw-outputs li:before {
+    content: attr(data-shortname);
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+}
+
+#mapping-config .form-group {
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#mapping-config #mappings select {
+    font-size: inherit;
+}
+
+#mapping-config #mappings .form-group > select {
+    display: none;
+}
+
+#mapping-config #mappings button {
+    flex-grow: 1;
+    margin: 0 5px 0px 14px;
+    transition: .4s ease-out;
+    position: relative;
+}
+
+#mapping-config #mappings .form-group > button + button {
+    display: none;
+    margin: 0 5px 0px 0px;
+}
+
+#mapping-config #mappings [data-tooltip]:after {
+    opacity: 0;
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    background: orangered;
+    color: white;
+    padding: 4px;
+    border-radius: 23px;
+    transition: .3s ease-out;
+    white-space: nowrap;
+}
+
+#mapping-config .template {
+    display: none;
+}
+
+#mapping-config .map-control {
+    font-size: 24px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    display: inline-block;
+    color: black;
+}
+
+#mapping-config .map-control i {
+    vertical-align: top;
+}
+
+#mapping-help.map-control {
+    float: right;
+}
+
+#mapping-help.map-control:after {
+    display: block;
+    clear: both;
+}
+
+#mapping-config .form-group .material-icons {
+    color: black;
+    transition: .4s ease-out;
+    opacity: .5;
+    text-decoration: none;
+    font-size: 37px;
+    line-height: normal;
+    vertical-align: bottom;
+}
+
+#mapping-config .form-group .material-icons:hover {
+    opacity: 1;
+}
+
+#mapping-config .add-config:hover {
+    color: green;
+}
+
+#mapping-config .del-config:hover {
+    color: red;
+}
+
+#mapping-config input[type=radio], #mapping-config .disable-item {
+    margin-right: 70px;
+    display: inline-block;
+    width: 0px;
+    height: 23px;
+    font-size: inherit;
+    opacity: .5;
+    transition: .4s ease-out;
+}
+
+#mapping-config input[type=radio][value=axes] {
+    margin-right: 50px;
+}
+
+#mapping-config input[type=radio][value="dpad"] {
+    margin-right: 36px;
+}
+
+#mapping-config select{
+    margin-left: 6px;
+}
+
+#mapping-config input[type=radio]:checked, #mapping-config .disable-item:checked {
+    opacity: 1;
+}
+
+#mapping-config #mappings .disable-item:checked ~ button {
+    opacity: .5;
+    pointer-events: none;
+
+}
+
+#mapping-config input[value="buttons"]:after, #mapping-config input[value="axes"]:after, #mapping-config input[value="dpad"]:after, #mapping-config .disable-item:after {
+    display: inline-block;
+    background: orangered;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#mapping-config input[value="buttons"]:after {
+    content: "Button";
+}
+
+#mapping-config input[value="axes"]:after {
+    content: "Axis";
+}
+
+#mapping-config input[value="dpad"]:after {
+    font-family: "Material Icons";
+    content: "gamepad";
+    font-size: 23px;
+}
+
+#mapping-config .disable-item:after {
+    content: "Disable";
+}
+
+#mapping-config .axes-config:after {
+    font-family: inherit;
+    content: "check_box_outline_blank";
+    line-height: inherit;
+    cursor: pointer;
+}
+
+#mapping-config .axes-config:checked:after {
+    content: "check_box";
+}
+
+#mapping-config .axes-config {
+    width: 37px;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+#mapping-config .axes-config:checked {
+    opacity: 1;
+}
+
+#mapping-config .axes-config {
+    order: -1;
+}
+
+#mapping-config #mappings input[value="buttons"]:checked ~ select[name="buttons"], #mapping-config #mappings input[value="axes"]:checked ~ select[name="axes"] {
+    display: inline-block;
+}
+
+#mapping-config #mappings .fix-panel {
+    display: none;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+#mapping-config #mappings .fix-panel span {
+    line-height: 37px;
+    margin-right: 5px;
+    font-size: inherit;
+}
+
+#mapping-config #mappings .fix-axes, #mapping-config #mappings .fix-dpad li{
+    height: 37px;
+}
+
+#mapping-config #mappings .fix-dpad li{
+    display: flex;
+    margin-bottom: 5px;
+    justify-content: flex-end;
+}
+
+#mapping-config #mappings .fix-dpad{
+    flex-direction: column;
+}
+
+#mapping-config #mappings .fix-dpad button {
+    max-width: 655px;
+}
+
+#mapping-config #mappings .axes-config:checked ~ .fix-axes, #mapping-config #mappings input[type=radio][value=dpad]:checked ~ .fix-dpad{
+    display: flex;
+}
+
+#mapping-config #mappings .axes-config:checked ~ button:nth-of-type(2) {
+    display: none !important;
+}
+
+#mapping-config #mappings input[value="dpad"]:checked ~ .axes-config, #mapping-config #mappings input[value="dpad"]:checked ~ .fix-axes{
+    display: none;
+}
+
+#mapping-config #mappings input[value="axes"]:checked ~ .axes-config:not(:checked) ~ [data-tooltip]:hover:after, #mapping-config #mappings .fix-axes [data-tooltip]:hover:after {
+    opacity: 1;
+    top: -28px;
+}
+
+#mapping-config #mappings input[value="axes"]:checked ~ button:nth-of-type(2) {
+    display: block;
+}
+
+#mapping-config #mappings .map-message {
+    width: 100%;
+    display: none;
+    order: -2;
+    background: darkgreen;
+    color: #F2F2F2;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+#mapping-config #mappings .map-message.error {
+    display: block;
+    background: hsla(0,86%,50%,1);
+}
+
+#mapping-config #mappings .map-message.success{
+    display: block;
+    animation: 4s msg-animation forwards;
+}
+
+#mapping-config .button-group button {
+    float: right;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    background: orangered;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#mappings:empty + div {
+    display: none;
+}
+
+/*Generic Classes*/
+.active {
+    display: block;
+}
