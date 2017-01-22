@@ -39,7 +39,7 @@ $(function () {
     $genURL.attr("data-clipboard-text", window.location.href + "?" + $.param(firstText));
     $genURL.attr("data-message", "Click to copy, hold shift for HTTP link!");
     $('#url-form').on("keyup change", function () {
-        $('#generate .url').text($.param($('#url-form [name]').serializeObject()));
+        $('#generate .url').text(window.location.href + $.param($('#url-form [name]').serializeObject()));
         $genURL.attr("data-clipboard-text", window.location.href + "?" + $.param($('#url-form [name]').serializeObject()));
 //            console.log($('#url-form').serializeObject());
         return false;
