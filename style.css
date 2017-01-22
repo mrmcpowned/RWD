@@ -655,6 +655,26 @@ strong {
     padding: 0 0px 5px 0px;
 }
 
+.player {
+    background: white;
+    padding: 9px;
+    vertical-align: top;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 50px;
+    border: none;
+    font-size: 25px;
+    outline: 0;
+    cursor: pointer;
+}
+
+.ty {
+    background: green;
+    z-index: 11;
+    display: none;
+    border-bottom: 1px solid darkgreen;
+}
+
 .uc {
     background: orange;
     z-index: 11;
@@ -680,6 +700,64 @@ strong {
     width: 100%;
 }
 
+/*
+Help Box Stuff
+.changelog::-webkit-scrollbar
+{
+    width: 22px;  !* for vertical scrollbars *!
+    height: 12px; !* for horizontal scrollbars *!
+}
+
+.changelog::-webkit-scrollbar-track
+{
+    !*background: rgba(0, 0, 0, 0.1);*!
+    !*border-radius: 12px;*!
+    !*box-shadow: inset 1px 1px 12px rgba(0, 0, 0, 0.28);*!
+}
+
+.changelog::-webkit-scrollbar-thumb
+{
+    background: linear-gradient(to right, rgba(54, 58, 65, 0.2) 0%,rgba(0,0,0,0.3) 100%);
+    border-radius: 12px;
+    border: 4px solid transparent;
+    background-clip: padding-box;
+}
+*/
+/*.info {
+    display: block;
+    background: #75bbfd;
+    font-size: 13pt;
+    padding: 12px;
+    vertical-align: text-bottom;
+    color: black;
+}
+.info span:before {
+    content: "INFO";
+    padding: 2px 6px;
+    border: solid #95d0fc 2px;
+    margin: 0 6px 0 0;
+    font-weight: 700;
+    border-radius: 3px;
+}
+.warning {
+    display: block;
+    background: darkred;
+    font-size: 13pt;
+    padding: 12px;
+    vertical-align: text-bottom;
+}
+.warning span:before {
+    content: "WARNING";
+    padding: 2px 6px;
+    background: red;
+    margin: 0 6px 0 0;
+    font-weight: 700;
+    border-radius: 3px;
+}
+.info span, .warning span {
+    text-align: center;
+    display: block;
+}*/
 
 /*CSS Slideout Menu*/
 a .menu-button {
@@ -745,6 +823,46 @@ a:active .menu-button {
     width: 100%;
     height: 100%;
 }
+
+/*Twitch Video Tooltip*/
+/*.menu .yt-contain:before, .yt-contain:after{
+    display: block;
+    visibility: hidden;
+    z-index: 10;
+    position: fixed;
+    white-space: pre-line;
+    transform: translateX(-20px);
+    transition: transform .3s ease-out, opacity .3s ease-out;
+    opacity: 0;
+}
+
+.menu .yt-contain:hover:after, .yt-contain:hover:before{
+    transform: translateX(-5px);
+    visibility: visible;
+    opacity: 1;
+}
+.menu .yt-contain:after {
+    content: "Upsilon Pi Epsilon @ FIU is hosting a Super Smash Bros. tournament on Friday, October 28th at 6pm EST. \AHope to see you in chat!";
+    width: 200px;
+    text-align: center;
+    padding: 8px 8px 8px 8px;
+    color: whitesmoke;
+    right: -240px;
+    top: 120px;
+    border-radius: 5px;
+    background: rgba(0,0,0,.7);
+}
+.menu .yt-contain:before{
+    content: "";
+    width: 0px;
+    height: 0;
+    top: 160px;
+    right: -24px;
+    border-style: solid;
+    border-width: 13px 15px 13px 0px;
+    border-color: transparent rgba(0,0,0,.7) transparent transparent;
+    box-sizing: border-box;
+}*/
 
 
 .menu ul {
@@ -1052,6 +1170,56 @@ a:active .menu-button {
 .form-group .input-unit + [id*=-input] {
     width: 474px;
     padding-right: 60px;
+}
+
+#docs h2 {
+    margin-bottom: 15px;
+}
+
+#docs h2:after {
+    content: attr(data-param);
+    margin-left: 5px;
+    padding: 3px;
+    font-family: "Consolas", monospace;
+    background: lightgrey;
+    color: darkgoldenrod;
+    word-wrap: break-word;
+    border-radius: 5px;
+    border: 1px solid hsla(0, 0%, 77%, 1);
+    text-shadow: rgba(0, 0, 0, 0.44) 0 0 .1px;
+}
+
+#docs .definition, #docs .definition ul {
+    margin-bottom: 15px;
+}
+
+#docs .definition ul li {
+    margin-bottom: 4px;
+}
+
+#docs .definition div.codeblock {
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#docs .definition li:before {
+    content: '\2012';
+    margin-right: 4px;
+}
+
+#docs .definition li:nth-child(1):before {
+    content: "UNIT: ";
+    font-weight: bold;
+}
+
+#docs .definition li:nth-child(2):before {
+    content: "DEFAULT VALUE: ";
+    font-weight: bold;
+}
+
+#docs .definition li:nth-child(3):before {
+    content: "ACCEPTABLE VALUES: ";
+    font-weight: bold;
 }
 
 .generator-container {
@@ -1421,6 +1589,187 @@ a:active .menu-button {
 
 #mappings:empty + div {
     display: none;
+}
+
+#showcase .preview iframe {
+    width: 100%;
+    height: 100%;
+}
+
+#showcase .preview {
+    height: 150px;
+    width: 200px;
+    float: left;
+    margin-right: 10px;
+}
+
+#showcase .description {
+
+}
+
+#adoptaskin p {
+    margin-bottom: 8px;
+}
+
+#adoptaskin article ul {
+    list-style: inside disc;
+    margin: 0 0 8px 10px;
+}
+
+#adoptaskin article ul li:not(:last-of-type) {
+    margin-bottom: 4px;
+}
+
+#adoptaskin #skin-tc {
+    color: white;
+    text-align: center;
+    width: 100%;
+    display: block;
+    background: crimson;
+    padding: 10px;
+    box-sizing: border-box;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+#contact-form input, #contact-form textarea, #contact-form select {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 30px;
+    padding: 10px;
+    font-family: inherit;
+}
+
+#contact-form textarea {
+    min-height: 200px;
+}
+
+#contact-form .g-recaptcha {
+    float: left;
+}
+
+#contact-form .button-group {
+    float: right;
+}
+
+#contact-form .button-group button {
+    background: tomato;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 78px;
+    font-size: 30px;
+    padding: 0px 50px;
+    border-radius: 4px;
+    color: white;
+    margin-left: 10px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px 1px;
+}
+
+#contact-form .button-group button:disabled {
+    opacity: 0.5;
+}
+
+#messages {
+    background: orangered;
+    border-radius: 3px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    color: white;
+}
+
+#messages p {
+    padding: 0px;
+    margin: 0px;
+}
+
+#messages ul {
+    list-style: inside disc;
+}
+
+#messages ul li {
+    margin-bottom: 4px
+}
+
+#messages.success {
+    background: #006b00;
+}
+
+#messages:empty {
+    display: none;
+}
+
+#donate article {
+    display: flex;
+    flex-direction: row;
+}
+
+#donate .donate-buttons {
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+#donate .donate-buttons a {
+    text-decoration: none;
+    margin: 0.7%;
+}
+
+#donate .donate-buttons .dbutton {
+    text-align: center;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 3px;
+}
+
+#donate .dbutton .fa {
+    margin-right: 5px;
+}
+
+#donate .pp.dbutton {
+    background: #009CDE;
+    color: black;
+}
+
+#donate .btc.dbutton {
+    background: yellowgreen;
+    color: black;
+}
+
+#donate .amzn.dbutton {
+    background: #FF9900;
+    color: black;
+}
+
+/* Survey Beg Box */
+.plshalpme {
+    display: none;
+}
+
+.disconnected[id*=gamepad-] .plshalpme {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: darkred;
+}
+
+.disconnected[id*=gamepad-] .plshalpme div {
+    display: block;
+    /* margin: 0 auto; */
+    /* width: 238px; */
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    color: whitesmoke;
+    font-size: 68px;
+    left: 50%;
+}
+
+.disconnected[id*=gamepad-] .plshalpme a {
+    color: whitesmoke;
+    text-decoration: none;
 }
 
 /*Generic Classes*/
