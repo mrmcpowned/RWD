@@ -35,7 +35,7 @@ $(function () {
 
     //
     var firstText = $('#url-form [name]').serializeObject();
-    $('#generate .url').text($.param(firstText));
+    $('#generate .url').text(window.location.href + $.param(firstText));
     $genURL.attr("data-clipboard-text", window.location.href + "?" + $.param(firstText));
     $genURL.attr("data-message", "Click to copy, hold shift for HTTP link!");
     $('#url-form').on("keyup change", function () {
