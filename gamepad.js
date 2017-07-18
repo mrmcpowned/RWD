@@ -64,9 +64,9 @@ var gamepadSupport = {
         } else {
             // Firefox supports the connect/disconnect event, so we attach event
             // handlers to those.
-            window.addEventListener('MozGamepadConnected',
+            window.addEventListener('gamepadconnected',
                 gamepadSupport.onGamepadConnect, false);
-            window.addEventListener('MozGamepadDisconnected',
+            window.addEventListener('gamepaddisconnected',
                 gamepadSupport.onGamepadDisconnect, false);
 
             // Since Chrome only supports polling, we initiate polling loop straight
